@@ -3,6 +3,8 @@ const app = express()
 const port = process.env.port || 3000;
 const Customers = require('./src/customers/routes');
 
+
+app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
@@ -12,4 +14,5 @@ app.listen(port, () => {
 });
 
 
+app.use('', Customers);
 app.use('', Customers);

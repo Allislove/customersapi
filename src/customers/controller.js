@@ -2,61 +2,56 @@ const AWS = require('aws-sdk');
 const config = require('../../config');
 const { v4: uuidv4 } = require('uuid');
 uuidv4();
+// const { PutItemCommand } = require("@aws-sdk/client-dynamodb");
+// const { ddbClient } = require("../../ddbClient.js");
+AWS.config.update(config.aws_remote_config);
 
-const getCustomers = function (req, res) {
-    AWS.config.update(config.aws_remote_config);
-
+const getCustomers = async (req, res)=> {
     const docClient = new AWS.DynamoDB.DocumentClient();
-
+    // const customers = config.aws_table_name;
     const params = {
         TableName: config.aws_table_name
-    };
-
-    docClient.scan(params, function (err, data) {
-
-        if (err) {
-            console.log(err)
-            res.send({
-                success: false,
-                message: err
-            });
-        } else {
-            const { allCustomers } = data;
-            res.send({
-                success: true,
-                customers: allCustomers
-            });
+      }
+      try {
+        const customers = docClient.scan(params, []);
+        // console.log({allCustomers});
+        const body = {
+          customers
         }
-    });
+        res.json(body);
+      } catch(error) {
+        console.error('*****HAPPENS HERE*****: ', error);
+        res.status(500).send(error);
+      }
 }
 
-const addCustomers = function (req, res) {
-    AWS.config.update(config.aws_remote_config);
-    const docClient = new AWS.DynamoDB.DocumentClient();
-    const Item = { ...req.body };
-    Item.id = uuidv4();
-    Item.name,
-    Item.country
-    var params = {
-        TableName: config.aws_table_name,
-        Item: Item
-    };
 
-    // Call DynamoDB to add the item to the table
-    docClient.put(params, function (err, data) {
-        if (err) {
-            res.send({
-                success: false,
-                message: err
-            });
-        } else {
-            res.send({
-                success: true,
-                message: 'Added customer',
-                customers: data
-            });
-        }
-    });
+const addCustomers = async(req, res) => {
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    try {
+        const params = {
+            TableName: config.aws_table_name,
+            Item: { ...req.body } // Capturamos los datos(variables) que vamos a enviar
+          }
+          // docClient, es el parametro del SDK, que recibe
+          await docClient.put(params).promise().then(() => {
+            const body = { // Recibimos los datos en el cuerpo
+              Operation: 'SAVE',
+              Message: 'SUCCESS',
+              Item: { ...req.body }
+            }
+            res.json(body);
+          }, error => {
+            console.error('*******HAPPENS HERE...2********: ', error);
+            res.status(500).send(error);
+          })
+        
+    } catch (error) {
+        // console.log(error);
+        return error;
+    }
+
 }
 
 module.exports = {
