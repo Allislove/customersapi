@@ -8,7 +8,7 @@
 **Write in the console where you clone the repository**
 ``` cd customersapi ```
 **Now we need create the .elasticbeanstalk directory, so create it.**
-``` JUST CREATE A DIRECTORY NAME <.elasticbeanstalk ``` *In the root of the folder the project, then we need create a File into that folder with the name < config.yml > and need added some data into > see below.*
+ *JUST CREATE A DIRECTORY NAME* ```.elasticbeanstalk ``` *In the root of the folder the project, then we need create a File into that folder with the name < config.yml > and need added some data into > see below.*
 
 ``` branch-defaults:
   home:
@@ -30,8 +30,8 @@ global:
   workspace_type: Application
  ```
 
-**Now we need, create another file, with the name <config.js> ¿Why?
-Cuz, we need add some data to manage the DynamoDB and the IAM Secret User. So into the <config.js> file, add this.**
+**Now we need, create another file, with the name ```config.js``` ¿Why?
+Cuz, we need add some data to manage the DynamoDB and the IAM Secret User. So into the ```config.js``` file, add this.**
 
 ``` module.exports = {
     aws_table_name: 'you-table-name-here',
