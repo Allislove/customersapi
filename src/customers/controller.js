@@ -41,6 +41,7 @@ const addCustomers = async(req, res) => {
               Message: 'SUCCESS',
               Item: { ...req.body }
             }
+            console.log(body);
             res.json(body);
           }, error => {
             console.error('*******HAPPENS HERE...2********: ', error);
