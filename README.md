@@ -2,7 +2,7 @@
 
 ---- Remember, to run this project, we need to have installed the EBS Cli, we can take 10 mins to install it.
 
-**Write in the console 
+** Write in the console **
 ``` git clone https://github.com/Allislove/customersapi.git ```
 
 **Write in the console where you clone the repository
