@@ -32,26 +32,26 @@ global:
  ```
 
 - **Now we need, create another file, with the name ```config.js``` ¿Why?
-Cuz, we need add some data to manage the DynamoDB and the IAM Secret User. So into the ```config.js``` file, add this.**
+Cuz, we need add some data to manage the DynamoDB and the IAM Secret User. So into the ```config.js``` file, add this.
 
-``` module.exports = {
-    aws_table_name: 'you-table-name-here',
-    aws_local_config: {
-      //Provide details for local configuration
-    },
+````
+```module.exports = {
+    aws_table_name: "you-table-name-here",
     aws_remote_config: {
-      accessKeyId: 'you-iam-accesKey-id',
-      secretAccessKey: 'you-iam-secretAccessKey-pass',
-      region: 'us-east-1', <can be another example 'us-east-1>
+      accessKeyId: "you-iam-accesKey-id",
+      secretAccessKey: "you-iam-secretAccessKey-pass",
+      region: "us-east-1", <can be another example "us-east-1">
     }
-}; ```
+};```
+````
 
-- **Then do** 
-``` npm install ```
+- Then do 
+```npm install```
 
 
+- Finally (Run the command)
+``` npm run dev```
 
-- **Finally (Run the command)**
-``` npm run dev ```
+- Now, we can upload the changes to  **aws EBS**, so clic rigth
 
 
