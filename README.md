@@ -11,7 +11,8 @@
 - **Now we need create the .elasticbeanstalk directory, so create it.**
  *JUST CREATE A DIRECTORY NAME* ```.elasticbeanstalk ``` *In the root of the folder the project, then we need create a File into that folder with the name ```config.yml``` and need added some data into > see below.*
 
-```yml branch-defaults:
+```yml 
+branch-defaults:
   home:
     environment: node-express-env
     group_suffix: null
@@ -35,7 +36,8 @@ global:
 Cuz, we need add some data to manage the DynamoDB and the IAM Secret User. So into the ```config.js``` file, add this.
 
 ````js
-```module.exports = {
+```
+module.exports = {
     aws_table_name: "you-table-name-here",
     aws_local_config: {
       //Provide details for local configuration
