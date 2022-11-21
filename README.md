@@ -36,7 +36,6 @@ global:
 Cuz, we need add some data to manage the DynamoDB and the IAM Secret User. So into the ```config.js``` file, add this.
 
 ````js
-```
 module.exports = {
     aws_table_name: "you-table-name-here",
     aws_local_config: {
@@ -47,7 +46,7 @@ module.exports = {
       secretAccessKey: "you-iam-secretAccessKey-pass",
       region: "us-east-1", <can be another example "us-east-1">
     }
-};```
+};
 ````
 
 - Then do 
